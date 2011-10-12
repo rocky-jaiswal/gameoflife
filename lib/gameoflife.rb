@@ -3,7 +3,6 @@ require File.expand_path('../lib/gameoflife/matrix_printer', File.dirname(__FILE
 
 module Gameoflife
   puts "Welcome to the Game of Life!!"
-  
   puts "Enter width of matrix:"
   width = gets
   puts "Enter height of matrix:"
@@ -23,6 +22,5 @@ module Gameoflife
   puts "Printing matrix..."
   puts ""
   
-  matrix_printer = Gameoflife::MatrixPrinter.new(width.to_i, height.to_i, alive_array)
-  matrix_printer.print_matrix
+  Gameoflife::MatrixPrinter.new(width.to_i, height.to_i, alive_array).print_matrix
 end

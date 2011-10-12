@@ -1,7 +1,6 @@
 module Gameoflife
   
   class MatrixPrinter
-    
     def initialize(width, height, alive_array)
       @width = width
       @height = height
@@ -9,7 +8,6 @@ module Gameoflife
     end
     
     def print_matrix
-      #puts @alive_array.inspect
       (1..@height).each do |h|
         (1..@width).each do |w|
           print "|0" unless is_alive(h, w)
@@ -28,7 +26,6 @@ module Gameoflife
       end
       return is_alive  
     end
-          
   end
 
 end

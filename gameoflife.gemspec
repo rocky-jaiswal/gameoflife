@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Gameoflife::VERSION
   s.authors     = ["Rocky Jaiswal"]
   s.email       = ["rocky.jaiswal@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://rockyj.in"
+  s.summary     = "A simple game of life implementation for learning ruby and rspec" 
+  s.description = "A simple game of life implementation for learning ruby and rspec"
 
   s.rubyforge_project = "gameoflife"
 

@@ -25,6 +25,7 @@ module Gameoflife
     return alive_array
   end
   
+  puts ""
   puts "Welcome to the Game of Life!! Press Ctrl+C to exit anytime.."
   width, height = get_width_and_height
   alive_array = get_seeds

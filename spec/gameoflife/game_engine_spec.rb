@@ -27,11 +27,11 @@ module Gameoflife
       end
       
       it "should determine if the cell should live in the next generation" do
-        GameEngine.should_live?(true, [[1, 1],[1, 2],[1, 3],[2, 1],[2, 3],[3, 1],[3, 2],[3, 3]], [["1","2"],["2","1"],["2","2"]]).should == true
+        GameEngine.should_live?(true, [[1, 1],[1, 2],[1, 3],[2, 1],[2, 3],[3, 1],[3, 2],[3, 3]], [[1,2],[2,1],[2,2]]).should == true
         
-        GameEngine.should_live?(true, [[1, 1],[2, 2],[1, 3],[2, 1],[2, 3]], [["1","2"],["2","1"],["2","2"]]).should == true
+        GameEngine.should_live?(true, [[1, 1],[2, 2],[1, 3],[2, 1],[2, 3]], [[1,2],[2,1],[2,2]]).should == true
         
-        GameEngine.should_live?(false, [[1, 2],[2, 1],[2, 2]], [["1","2"],["2","1"],["2","2"]]).should == true
+        GameEngine.should_live?(false, [[1, 2],[2, 1],[2, 2]], [[1,2],[2,1],[2,2]]).should == true
       end
       
       it "should grant life to next gen if rules allow" do

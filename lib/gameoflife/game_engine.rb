@@ -5,9 +5,9 @@ module Gameoflife
       next_gen_alive_array = []
       (1..height).each do |h|
         (1..width).each do |w|
-          already_alive = is_cell_alive?([h.to_s, w.to_s], alive_array)
+          already_alive = is_cell_alive?([h, w], alive_array)
           neighbours = get_neighbours(h, w, height, width)
-          next_gen_alive_array << [h.to_s, w.to_s] if should_live?(already_alive, neighbours, alive_array)
+          next_gen_alive_array << [h, w] if should_live?(already_alive, neighbours, alive_array)
         end
       end
       return next_gen_alive_array
@@ -35,9 +35,7 @@ module Gameoflife
     def self.should_live?(already_alive, neighbours, alive_array)
       alive_neighbour_count = 0
       neighbours.each do |cell|
-        cell[0] = cell[0].to_s
-        cell[1] = cell[1].to_s
-        alive_neighbour_count = alive_neighbour_count + 1 if is_cell_alive?(cell, alive_array)
+        alive_neighbour_count = (alive_neighbour_count + 1) if is_cell_alive?(cell, alive_array)
       end
       return grant_life_as_per_rules?(already_alive, alive_neighbour_count)
     end

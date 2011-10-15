@@ -12,12 +12,15 @@ module Gameoflife
   end
   
   def self.get_seeds
-    alive_cell = "Y"
+    user_input = "Y"
     alive_array = []
-    while alive_cell != "N" do
-      puts "Enter alive cells (Format : n,n) or n to exit:"
-      alive_cell = gets.chomp
-      alive_array << alive_cell.split(",") unless alive_cell.upcase! == "N"
+    while user_input != "N" do
+      puts "Enter alive cells (Format : n,m) or n to exit:"
+      user_input = gets.chomp
+      if user_input.upcase! != "N"
+        alive_cells = user_input.split(",") 
+        alive_array << [alive_cells[0].to_i, alive_cells[1].to_i]
+      end
     end
     return alive_array
   end

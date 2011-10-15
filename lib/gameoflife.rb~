@@ -15,7 +15,7 @@ module Gameoflife
     alive_cell = "Y"
     alive_array = []
     while alive_cell != "N" do
-      puts "Enter alive cells (Format : n,n) or n to exit:"
+      puts "Enter alive cells (n,n format) or n to exit:"
       alive_cell = gets.chomp
       alive_array << alive_cell.split(",") unless alive_cell.upcase! == "N"
     end

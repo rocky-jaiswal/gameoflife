@@ -26,21 +26,21 @@ module Gameoflife
         GameEngine.is_cell_alive?([3, 2], [[1, 2], [2, 2]]).should == false
       end
       
-      it "should determine if the cell should live in the next generation" do
-        GameEngine.should_live?(true, [[1, 1],[1, 2],[1, 3],[2, 1],[2, 3],[3, 1],[3, 2],[3, 3]], [[1,2],[2,1],[2,2]]).should == true
+      it "should determine the number of alive neighbours" do
+        GameEngine.get_alive_neighbour_count([[1, 1],[1, 2],[1, 3],[2, 1],[2, 3],[3, 1],[3, 2],[3, 3]], [[1,2],[2,1],[2,2]]).should == 2
         
-        GameEngine.should_live?(true, [[1, 1],[2, 2],[1, 3],[2, 1],[2, 3]], [[1,2],[2,1],[2,2]]).should == true
+        GameEngine.get_alive_neighbour_count([[1, 1],[2, 2],[1, 3],[2, 1],[2, 3]], [[1,2],[2,1],[2,2]]).should == 2
         
-        GameEngine.should_live?(false, [[1, 2],[2, 1],[2, 2]], [[1,2],[2,1],[2,2]]).should == true
+        GameEngine.get_alive_neighbour_count([[1, 2],[2, 1],[2, 2]], [[1,2],[2,1],[2,2]]).should == 3
       end
       
       it "should grant life to next gen if rules allow" do
-        GameEngine.grant_life_as_per_rules?(true, 2).should == true
-        GameEngine.grant_life_as_per_rules?(true, 3).should == true
-        GameEngine.grant_life_as_per_rules?(true, 1).should == false
-        GameEngine.grant_life_as_per_rules?(true, 4).should == false
-        GameEngine.grant_life_as_per_rules?(true, 3).should == true
-        GameEngine.grant_life_as_per_rules?(false, 4).should == false
+        GameEngine.should_live?(true, 2).should == true
+        GameEngine.should_live?(true, 3).should == true
+        GameEngine.should_live?(true, 1).should == false
+        GameEngine.should_live?(true, 4).should == false
+        GameEngine.should_live?(true, 3).should == true
+        GameEngine.should_live?(false, 4).should == false
       end
     end
   end

@@ -1,19 +1,14 @@
-require_relative 'game_engine'
+require_relative 'cell'
 
 module Gameoflife
   
   class MatrixPrinter
-    def initialize(height, width, alive_array)
-      @height = height
-      @width = width
-      @alive_array = alive_array  
-    end
-    
-    def print_matrix
-      (1..@height).each do |h|
-        (1..@width).each do |w|
-          print "|0" unless Gameoflife::GameEngine.is_cell_alive?([h, w], @alive_array)
-          print "|1" if Gameoflife::GameEngine.is_cell_alive?([h, w], @alive_array)
+
+    def print_matrix(height, width, alive_array)
+      (1..height).each do |h|
+        (1..width).each do |w|
+          print "|0" unless Cell.is_alive?([h, w], alive_array)
+          print "|1" if Cell.is_alive?([h, w], alive_array)
         end
         puts ""
       end

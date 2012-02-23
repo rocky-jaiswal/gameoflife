@@ -1,9 +1,10 @@
 require_relative 'gameoflife/version'
 require_relative 'gameoflife/matrix_printer'
+require_relative 'gameoflife/game_engine'
 
 module Gameoflife
 
-  def self.get_width_and_height
+  def self.get_matrix_width_and_height
     puts "Enter width of matrix:"
     width = gets
     puts "Enter height of matrix:"
@@ -24,17 +25,24 @@ module Gameoflife
     end
     return alive_array
   end
-  
-  puts ""
-  puts "Welcome to the Game of Life!! Press Ctrl+C to exit anytime.."
-  width, height = get_width_and_height
-  alive_array = get_seeds
-  
-  while(true) do
-    puts ""
-    Gameoflife::MatrixPrinter.new(width, height, alive_array).print_matrix
-    alive_array = Gameoflife::GameEngine.get_next_generation(width, height, alive_array)
-    sleep 2
+
+  def self.run_the_game(width, height, alive_array)
+    game_engine = GameEngine.new()
+    matrix_printer = MatrixPrinter.new()
+    
+    while(true) do
+      puts ""
+      
+      matrix_printer.print_matrix(width, height, alive_array)
+      alive_array = game_engine.get_next_generation(width, height, alive_array)
+      
+      sleep 2
+    end
   end
+  
+  puts "Welcome to the Game of Life!! Press Ctrl+C to exit anytime.."
+  width, height = get_matrix_width_and_height
+  alive_array = get_seeds
+  run_the_game(width, height, alive_array)
   
 end

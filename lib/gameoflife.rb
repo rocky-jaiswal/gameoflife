@@ -1,48 +1,45 @@
 require_relative 'gameoflife/version'
 require_relative 'gameoflife/matrix_printer'
 require_relative 'gameoflife/game_engine'
+require_relative 'gameoflife/game_input'
+require_relative 'gameoflife/matrix'
 
 module Gameoflife
 
-  def self.get_matrix_width_and_height
-    puts "Enter width of matrix:"
-    width = gets
+  private
+  def self.get_matrix_height_and_width
     puts "Enter height of matrix:"
     height = gets
-    return width.to_i, height.to_i
-  end
-  
-  def self.get_seeds
-    user_input = "Y"
-    alive_array = []
-    while user_input != "N" do
-      puts "Enter alive cells (Format : n,m) or n to exit:"
-      user_input = gets.chomp
-      if user_input.upcase! != "N"
-        alive_cells = user_input.split(",") 
-        alive_array << [alive_cells[0].to_i, alive_cells[1].to_i]
-      end
-    end
-    return alive_array
+    puts "Enter width of matrix:"
+    width = gets
+    return height.to_i, width.to_i
   end
 
-  def self.run_the_game(width, height, alive_array)
+  def self.run_the_game(matrix)
     game_engine = GameEngine.new()
     matrix_printer = MatrixPrinter.new()
     
     while(true) do
       puts ""
       
-      matrix_printer.print_matrix(width, height, alive_array)
-      alive_array = game_engine.get_next_generation(width, height, alive_array)
+      matrix_printer.print_matrix(matrix)
+      alive_array = game_engine.get_next_generation(matrix)
       
       sleep 2
     end
   end
   
   puts "Welcome to the Game of Life!! Press Ctrl+C to exit anytime.."
-  width, height = get_matrix_width_and_height
-  alive_array = get_seeds
-  run_the_game(width, height, alive_array)
+  height, width = get_matrix_height_and_width
+  
+  game_input = GameInput.new
+  alive_array = game_input.initialize_seeds
+
+  game_input.height = height
+  game_input.width = width
+  game_input.alive_array = alive_array
+
+  matrix = Matrix.new(height, width, alive_array)
+  run_the_game(matrix)
   
 end

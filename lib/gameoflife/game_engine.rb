@@ -11,7 +11,7 @@ module Gameoflife
       @neighbourhood = Neighbourhood.new
     end
     
-    def get_next_generation(height, width, alive_array)
+    def get_next_generation(matrix)
       next_gen_alive_array = []
       
       (1..height).each do |h|

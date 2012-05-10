@@ -5,15 +5,17 @@ module Gameoflife
   class MatrixPrinter
 
     def print_matrix(matrix)
-      (1..matrix.height).each do |h|
-        (1..matrix.width).each do |w|
-          print "|0" unless Cell.is_alive?([h, w], matrix.alive_array)
-          print "|1" if Cell.is_alive?([h, w], matrix.alive_array)
-        end
-        puts ""
+      line = 1
+      matrix.cells.each do |cell|
+	puts "|1" if cell.is_alive?
+	puts "|0" unless cell.is_alive?
+	if cell.row > line
+	  puts "\n"
+	  line = line + 1
+	end
       end
-      puts "\n"
     end
+
   end
 
 end

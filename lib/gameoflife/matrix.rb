@@ -2,25 +2,24 @@ module Gameoflife
   
   class Matrix
 
-    attr_reader :height, :width, :alive_cells
+    attr_reader :height, :width, :cells
 
-    def initialize(height, width, alive_cells)
+    def initialize(height, width, cells)
       @height = height
       @width = width
-      @alive_cells = alive_cells
+      @cells = cells
     end
 
-    def is_cell_alive?(cell)
-      @alive_cells.each do |alive_cell|
-        return true if cell == alive_cell
-      end
-      return false
-    end
-
-    def does_cell_exists?(cell)
+    def does_cell_exist_at(row, col)
       exists = true
-      exists = false if cell.row < 1 || cell.column < 1 || cell.row > @height || cell.column > @width
+      exists = false if row < 1 || col < 1 || row > @height || col > @width
       return exists
+    end
+    
+    def get_cell_at(row, column)
+      matrix.@cells.each do |cell|
+	return cell if cell.row == row && cell.column == column 
+      end
     end
 
   end

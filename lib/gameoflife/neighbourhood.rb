@@ -3,28 +3,30 @@ require_relative 'cell'
 module Gameoflife
 
   class Neighbourhood
-
-    def get_neighbours(h, w, height, width)
-      neighbours = []
-      neighbours << [h-1, w-1] if Cell.exists?(h-1, w-1, height, width)
-      neighbours << [h-1, w] if Cell.exists?(h-1, w, height, width)
-      neighbours << [h-1, w+1] if Cell.exists?(h-1, w+1, height, width)
-      neighbours << [h, w-1] if Cell.exists?(h, w-1, height, width)
-      neighbours << [h, w+1] if Cell.exists?(h, w+1, height, width)
-      neighbours << [h+1, w-1] if Cell.exists?(h+1, w-1, height, width)
-      neighbours << [h+1, w] if Cell.exists?(h+1, w, height, width)
-      neighbours << [h+1, w+1] if Cell.exists?(h+1, w+1, height, width)
-      return neighbours
-    end
     
-    def get_alive_neighbour_count(neighbours, alive_array)
+    def get_alive_neighbour_count(matrix, cell)
+      neighbours = get_neighbours(matrix, cell)
       alive_neighbour_count = 0
       
       neighbours.each do |cell|
-        alive_neighbour_count = (alive_neighbour_count + 1) if Cell.is_alive?(cell, alive_array)
+        alive_neighbour_count = (alive_neighbour_count + 1) if cell.is_alive
       end
       
       return alive_neighbour_count
+    end
+    
+    private
+     def get_neighbours(matrix, cell)
+      neighbours = []
+      neighbours << matrix.get_cell_at(cell.row - 1, cell.column - 1) if matrix.does_cell_exist_at(cell.row - 1, cell.column - 1)
+      neighbours << matrix.get_cell_at(cell.row - 1, cell.column    ) if matrix.does_cell_exist_at(cell.row - 1, cell.column    )
+      neighbours << matrix.get_cell_at(cell.row - 1, cell.column + 1) if matrix.does_cell_exist_at(cell.row - 1, cell.column + 1)
+      neighbours << matrix.get_cell_at(cell.row    , cell.column - 1) if matrix.does_cell_exist_at(cell.row    , cell.column - 1)
+      neighbours << matrix.get_cell_at(cell.row    , cell.column + 1) if matrix.does_cell_exist_at(cell.row    , cell.column + 1)
+      neighbours << matrix.get_cell_at(cell.row + 1, cell.column - 1) if matrix.does_cell_exist_at(cell.row + 1, cell.column - 1)
+      neighbours << matrix.get_cell_at(cell.row + 1, cell.column   1) if matrix.does_cell_exist_at(cell.row + 1, cell.column    )
+      neighbours << matrix.get_cell_at(cell.row + 1, cell.column + 1) if matrix.does_cell_exist_at(cell.row + 1, cell.column + 1)
+      return neighbours.compact
     end
 
   end

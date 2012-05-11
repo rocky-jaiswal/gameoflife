@@ -20,6 +20,15 @@ module Gameoflife
       c1.should == c2
       c2.should_not == c3
     end
+    
+    it "should provide state" do
+      c1 = Cell.new
+      c1.row = 2
+      c1.column = 3
+      c1.alive = true
+      
+      c1.is_alive?.should == true
+    end
   end
   
 end

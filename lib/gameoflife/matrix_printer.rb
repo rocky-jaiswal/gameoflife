@@ -4,15 +4,18 @@ module Gameoflife
   
   class MatrixPrinter
 
-    def print_matrix(matrix)
-      line = 1
-      matrix.cells.each do |cell|
-	puts "|1" if cell.is_alive?
-	puts "|0" unless cell.is_alive?
-	if cell.row > line
-	  puts "\n"
-	  line = line + 1
+    def print(matrix)
+      #line = 1
+      matrix.cells.sort.each do |cell|
+	if cell.is_alive?
+	  p "#{cell.row}|#{cell.column}|1"
+	else
+	  p "#{cell.row}|#{cell.column}|0"
 	end
+#  	if (cell.row) > line
+#  	  puts "\n"
+#  	  line = line + 1
+#  	end
       end
     end
 

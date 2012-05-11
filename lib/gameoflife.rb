@@ -14,10 +14,10 @@ module Gameoflife
     while(true) do
       puts ""
       
-      matrix_printer.print_matrix(matrix)
+      matrix_printer.print(matrix)
       matrix = game_engine.get_next_generation(matrix)
       
-      sleep 2
+      sleep 4
     end
   end
   

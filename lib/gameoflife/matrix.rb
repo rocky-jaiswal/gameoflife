@@ -17,7 +17,7 @@ module Gameoflife
     end
     
     def get_cell_at(row, column)
-      matrix.@cells.each do |cell|
+      @cells.each do |cell|
 	return cell if cell.row == row && cell.column == column 
       end
     end

@@ -4,9 +4,9 @@ module Gameoflife
     
     def initialize_matrix_height_and_width
       puts "Enter height of matrix:"
-      height = gets
+      height = gets.chomp
       puts "Enter width of matrix:"
-      width = gets
+      width = gets.chomp
       return height.to_i, width.to_i
     end
 
@@ -24,28 +24,27 @@ module Gameoflife
     def setup_matrix(height, width, cells)
       (1..height).each do |row|
         (1..width).each do |col|
-          cell = Cell.new
-	  cell.row = row
-	  cell.column = col
-	  if !cells.include?(cell)
-	    cell.alive = false
-	    cells << cell
-	  end
+          add_cell(row, col, false, cells)
         end
       end
       matrix = Matrix.new(height, width, cells)
-      return matrix
     end
 
     private
     def process_user_input(user_input, cells)
       if user_input.upcase! != "N"
-          inp = user_input.split(",")
-          cell = Cell.new
-          cell.row = inp[0].to_i
-          cell.column = inp[1].to_i
-	  cell.alive = true
-          cells << cell
+	inp = user_input.split(",")
+	add_cell(inp[0].to_i, inp[1].to_i, true, cells)
+      end
+    end
+    
+    def add_cell(row, col, alive, cells)
+      cell = Cell.new
+      cell.row = row
+      cell.column = col
+      if !cells.include?(cell)
+	cell.alive = alive
+	cells << cell
       end
     end
 

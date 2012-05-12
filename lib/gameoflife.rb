@@ -17,7 +17,7 @@ module Gameoflife
       matrix_printer.print(matrix)
       matrix = game_engine.get_next_generation(matrix)
       
-      sleep 4
+      sleep 3
     end
   end
   

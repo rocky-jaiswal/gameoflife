@@ -5,18 +5,21 @@ module Gameoflife
   class MatrixPrinter
 
     def print(matrix)
-      #line = 1
+      line_count = 1
+      line = ""
       matrix.cells.sort.each do |cell|
+	if (cell.row.to_i) > line_count
+  	  puts line
+	  line = ""
+  	  line_count = line_count + 1
+  	end
 	if cell.is_alive?
-	  p "#{cell.row}|#{cell.column}|1"
+	  line = line + "|1"
 	else
-	  p "#{cell.row}|#{cell.column}|0"
+	  line = line + "|0"
 	end
-#  	if (cell.row) > line
-#  	  puts "\n"
-#  	  line = line + 1
-#  	end
       end
+      puts line
     end
 
   end

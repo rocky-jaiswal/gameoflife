@@ -15,9 +15,9 @@ module Gameoflife
     
     def <=>(another)
       if(@row == another.row)
-	return @column <=> another.column
+        return @column <=> another.column
       else
-	return @row <=> another.row
+        return @row <=> another.row
       end
     end
 

@@ -7,22 +7,23 @@ module Gameoflife
   
   class GameEngine
 
-    def initialize
+    def initialize(game_input)
       @rules = [Loneliness.new, Sustenance.new, OverPopulation.new, Reproduction.new]
       @neighbourhood = Neighbourhood.new
-      @game_input = GameInput.new
+      @game_input = game_input
     end
     
     def get_next_generation(matrix)
       next_gen_alive_cells = []
       
       matrix.cells.each do |cell|
-	alive_neighbour_count = @neighbourhood.get_alive_neighbour_count(matrix, cell)
-	next_gen_alive_cells << cell if should_live?(cell, alive_neighbour_count)
+        alive_neighbour_count = @neighbourhood.get_alive_neighbour_count(matrix, cell)
+        next_gen_alive_cells << cell if should_live?(cell, alive_neighbour_count)
       end
       
       next_gen_alive_cells.map{|cell| cell.alive = true}
-      matrix = @game_input.setup_matrix(matrix.height, matrix.width, next_gen_alive_cells)
+      @game_input.cells = next_gen_alive_cells
+      matrix = @game_input.setup_matrix
       
       return matrix
     end

@@ -18,7 +18,7 @@ module Gameoflife
     
     def get_cell_at(row, column)
       @cells.each do |cell|
-	return cell if cell.row == row && cell.column == column 
+        return cell if cell.row == row && cell.column == column 
       end
     end
 

@@ -7,7 +7,8 @@ require_relative 'gameoflife/matrix'
 module Gameoflife
 
   private
-  def self.run_the_game_infinitely(matrix, game_engine, matrix_printer)
+  def self.run_the_game_infinitely(matrix, game_engine)
+    matrix_printer = MatrixPrinter.new
     while(true) do
       puts ""
       matrix_printer.print(matrix)
@@ -19,13 +20,12 @@ module Gameoflife
   puts "Welcome to the Game of Life!! Press Ctrl+C to exit anytime.."
   
   game_input = GameInput.new
-  game_engine = GameEngine.new
-  matrix_printer = MatrixPrinter.new
+  game_engine = GameEngine.new(game_input)
   
-  height, width = game_input.initialize_matrix_height_and_width
-  seeds = game_input.initialize_seeds
-  matrix = game_input.setup_matrix(height, width, seeds)
+  game_input.initialize_matrix_height_and_width_manually
+  game_input.initialize_seeds_manually
+  matrix = game_input.setup_matrix
   
-  run_the_game_infinitely(matrix, game_engine, matrix_printer)
+  run_the_game_infinitely(matrix, game_engine)
   
 end
